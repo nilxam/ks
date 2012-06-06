@@ -8,13 +8,19 @@
 Device::Device(const QString &devicePath)
 {
     QDBusConnection conn = QDBusConnection::systemBus();
+    if (!QDBusConnection::systemBus().isConnected()) {
+        qDebug() << "Cannot connect to the D-Bus system bus.";
+
+        return;
+    }
+
     QDBusInterface iface(URFKILL_SERVICE, devicePath, URFKILL_DEVICE_INTERFACE, conn, this);
     //QDBusInterface iface(URFKILL_SERVICE, devicePath, DBUS_PROPERTIES, conn, this);
     if (!iface.isValid()) {
-        qDebug() >> "Can not create DBus interface!";
+        qDebug() << "Can not create DBus interface!";
         qDebug() << QDBusConnection::systemBus().lastError().message();
 
-        QCoreApplication::instance()->quit();
+        return;
     }
 
     //QDBusReply<QDBusVariant> rep = iface.call("Get","org.freedesktop.URfkill.Device", "name");
