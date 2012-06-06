@@ -1,15 +1,16 @@
 #ifndef __DEVICE_H
 #define __DEVICE_H
 
-#include <QtCore/QVariant>
-#include <QtCore/QString>
-#include <QtDBus/QDBusInterface>
+#include <QVariant>
+#include <QString>
+#include <QDBusInterface>
 
 #include "enum.h"
 
-class Device
+class Device : public QObject
 {
-    public:
+    Q_OBJECT
+public:
     Device(const QString &devicePath);
     ~Device();
 

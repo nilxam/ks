@@ -1,8 +1,8 @@
 #ifndef __KILLSWITCH_H
 #define __KILLSWITCH_H
 
-#include <QtCore/QVariant>
-#include <QtCore/QString>
+#include <QVariant>
+#include <QString>
 
 #include "enum.h"
 

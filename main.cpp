@@ -1,6 +1,6 @@
-#include <QtCore/QCoreApplication>
-#include <QtCore/QDebug>
-#include <QtDBus/QtDBus>
+#include <QCoreApplication>
+#include <QDebug>
+#include <QtDBus>
 
 #include "device.h"
 
@@ -12,9 +12,14 @@ int main(int argc, char **argv)
         qDebug() << "Cannot connect to the D-Bus session bus.";
         return 1;
     }
-    QString path = "/org/freedesktop/URfkill/device/1";
-    Device *device = new Device(path);
+
+    Device *device = new Device("/org/freedesktop/URfkill/devices/0");
     qDebug() << device->name();
+    qDebug() << device->hard();
+    qDebug() << device->soft();
+    qDebug() << device->index();
+    qDebug() << device->type();
+    qDebug() << device->platform();
 
     app.exec();
 }
