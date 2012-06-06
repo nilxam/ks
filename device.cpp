@@ -10,18 +10,14 @@ Device::Device(const QString &devicePath)
     QDBusConnection conn = QDBusConnection::systemBus();
     QDBusInterface iface(URFKILL_SERVICE, devicePath, URFKILL_DEVICE_INTERFACE, conn, this);
     //QDBusInterface iface(URFKILL_SERVICE, devicePath, DBUS_PROPERTIES, conn, this);
-
     if (!iface.isValid()) {
-        qDebug() << "no pass";
+        qDebug() >> "Can not create DBus interface!";
         qDebug() << QDBusConnection::systemBus().lastError().message();
-        return;
-    } else {
-        qDebug() << "pass";
+
+        QCoreApplication::instance()->quit();
     }
+
     //QDBusReply<QDBusVariant> rep = iface.call("Get","org.freedesktop.URfkill.Device", "name");
-    QVariant rep = iface.property("name");
-    if (rep.isValid())
-        qDebug() << "valid";
     //m_name = rep.value().variant().toString();
     m_name = iface.property("name").toString();
     m_hard = iface.property("hard").toBool();
