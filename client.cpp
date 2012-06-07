@@ -8,19 +8,25 @@
 #include "urfkill.h"
 #include "enum.h"
 
-void Client::on_clientIface_DeviceAdded(QString device)
+void Client::gotDeviceAdded(QString device)
 {
+    qDebug() << "device " << device << " added!";
     refreshDevicesData();
+    qDebug() << "device count is " << this->deviceCount();
 }
 
-void Client::on_clientIface_DeviceChanged(QString device)
+void Client::gotDeviceChanged(QString device)
 {
+    qDebug() << "device " << device << " changed!";
     refreshDevicesData();
+    qDebug() << "device count is " << this->deviceCount();
 }
 
-void Client::on_clientIface_DeviceRemoved(QString device)
+void Client::gotDeviceRemoved(QString device)
 {
+    qDebug() << "device " << device << " removed!";
     refreshDevicesData();
+    qDebug() << "device count is " << this->deviceCount();
 }
 
 bool Client::setBlock(uint type, bool block)
@@ -49,6 +55,8 @@ bool Client::setBlockIdx(uint index, bool block)
 
 void Client::refreshDevicesData()
 {
+    m_deviceCount = 0;
+
     QDBusReply<QList<QDBusObjectPath> > reply = clientIface->call("EnumerateDevices");
 
     if (reply.isValid()) {
@@ -88,6 +96,10 @@ Client::Client()
     connect(clientIface, SIGNAL(DeviceChanged(QString)), this, SIGNAL(deviceChanged(QString)));
     connect(clientIface, SIGNAL(DeviceRemoved(QString)), this, SIGNAL(deviceRemoved(QString)));
     connect(clientIface, SIGNAL(UrfkeyPressed(int)), this, SIGNAL(urfkeyPressed(int)));
+
+    connect(clientIface, SIGNAL(DeviceAdded(QString)), this, SLOT(gotDeviceAdded(QString)));
+    connect(clientIface, SIGNAL(DeviceChanged(QString)), this, SLOT(gotDeviceChanged(QString)));
+    connect(clientIface, SIGNAL(DeviceRemoved(QString)), this, SLOT(gotDeviceRemoved(QString)));
 }
 
 Client::~Client()

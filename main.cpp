@@ -23,9 +23,6 @@ int main(int argc, char *argv[])
         client->setBlockIdx(1,true);
     else
         client->setBlockIdx(1,false);
-    QObject::connect(client, SIGNAL(deviceAdded(QString)), test, SLOT(gotDeviceAdded(QString)));
-    QObject::connect(client, SIGNAL(deviceChanged(QString)), test, SLOT(gotDeviceChanged(QString)));
-    QObject::connect(client, SIGNAL(deviceRemoved(QString)), test, SLOT(gotDeviceRemoved(QString)));
 
     QList<QDBusObjectPath> devices = client->enumerateDevices();
     foreach(QDBusObjectPath udi, devices) {

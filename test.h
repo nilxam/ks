@@ -8,8 +8,4 @@ public:
 public Q_SLOTS:
     void gotDeviceChanged();
     void gotKillswitchChanged();
-
-    void gotDeviceAdded(QString device);
-    void gotDeviceChanged(QString device);
-    void gotDeviceRemoved(QString device);
 };

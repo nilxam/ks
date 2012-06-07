@@ -33,10 +33,10 @@ private:
     QString m_daemonVersion;
     QList<QDBusObjectPath> m_devicesList;
     uint m_deviceCount;
-private Q_SLOTS:
-    void on_clientIface_DeviceAdded(QString device);
-    void on_clientIface_DeviceChanged(QString device);
-    void on_clientIface_DeviceRemoved(QString device);
+private slots:
+    void gotDeviceAdded(QString device);
+    void gotDeviceChanged(QString device);
+    void gotDeviceRemoved(QString device);
 };
 
 #endif /* __CLIENT_H */

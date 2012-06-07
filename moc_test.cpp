@@ -23,7 +23,7 @@ static const uint qt_meta_data_Test[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       2,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -33,19 +33,13 @@ static const uint qt_meta_data_Test[] = {
  // slots: signature, parameters, type, tag, flags
        6,    5,    5,    5, 0x0a,
       25,    5,    5,    5, 0x0a,
-      55,   48,    5,    5, 0x0a,
-      79,   48,    5,    5, 0x0a,
-     105,   48,    5,    5, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_Test[] = {
     "Test\0\0gotDeviceChanged()\0"
-    "gotKillswitchChanged()\0device\0"
-    "gotDeviceAdded(QString)\0"
-    "gotDeviceChanged(QString)\0"
-    "gotDeviceRemoved(QString)\0"
+    "gotKillswitchChanged()\0"
 };
 
 void Test::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -56,12 +50,10 @@ void Test::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void *
         switch (_id) {
         case 0: _t->gotDeviceChanged(); break;
         case 1: _t->gotKillswitchChanged(); break;
-        case 2: _t->gotDeviceAdded((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 3: _t->gotDeviceChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 4: _t->gotDeviceRemoved((*reinterpret_cast< QString(*)>(_a[1]))); break;
         default: ;
         }
     }
+    Q_UNUSED(_a);
 }
 
 const QMetaObjectExtraData Test::staticMetaObjectExtraData = {
@@ -96,9 +88,9 @@ int Test::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 2)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 2;
     }
     return _id;
 }
