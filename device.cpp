@@ -3,7 +3,22 @@
 
 #include "urfkill.h"
 #include "device.h"
-#include "enum.h"
+
+void Device::refreshDeviceProperties()
+{
+    m_name = deviceIface->property("name").toString();
+    m_hard = deviceIface->property("hard").toBool();
+    m_soft = deviceIface->property("soft").toBool();
+    m_type = deviceIface->property("type").toInt();
+    m_index = deviceIface->property("index").toInt();
+}
+
+void Device::propertyChanged()
+{
+    //qDebug() << "changed!";
+    refreshDeviceProperties();
+    emit triggerPropertyChanged();
+}
 
 Device::Device(const QString &devicePath)
 {
@@ -14,22 +29,17 @@ Device::Device(const QString &devicePath)
         return;
     }
 
-    QDBusInterface iface(URFKILL_SERVICE, devicePath, URFKILL_DEVICE_INTERFACE, conn, this);
-    //QDBusInterface iface(URFKILL_SERVICE, devicePath, DBUS_PROPERTIES, conn, this);
-    if (!iface.isValid()) {
+    deviceIface = new QDBusInterface(URFKILL_SERVICE, devicePath, URFKILL_DEVICE_INTERFACE, conn, this);
+    if (!deviceIface->isValid()) {
         qDebug() << "Can not create DBus interface!";
         qDebug() << QDBusConnection::systemBus().lastError().message();
 
         return;
     }
 
-    //QDBusReply<QDBusVariant> rep = iface.call("Get","org.freedesktop.URfkill.Device", "name");
-    //m_name = rep.value().variant().toString();
-    m_name = iface.property("name").toString();
-    m_hard = iface.property("hard").toBool();
-    m_soft = iface.property("soft").toBool();
-    m_type = iface.property("type").toInt();
-    m_index = iface.property("index").toInt();
+    refreshDeviceProperties();
+
+    connect(deviceIface, SIGNAL(Changed()), this, SLOT(propertyChanged()));
 }
 
 Device::~Device()

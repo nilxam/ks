@@ -20,6 +20,12 @@ public:
     QString name() const;
     uint type() const;
     uint index() const;
+Q_SIGNALS:
+    void triggerPropertyChanged();
+public Q_SLOTS:
+    void propertyChanged();
+protected:
+    QDBusInterface *deviceIface;
 private:
     bool m_platform;
     bool m_hard;
@@ -27,6 +33,8 @@ private:
     QString m_name;
     uint m_type;
     uint m_index;
+
+    void refreshDeviceProperties();
 };
 
 #endif

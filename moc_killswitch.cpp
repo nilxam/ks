@@ -1,5 +1,5 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'device.h'
+** Meta object code from reading C++ file 'killswitch.h'
 **
 ** Created:
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
@@ -7,9 +7,9 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "device.h"
+#include "killswitch.h"
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'device.h' doesn't include <QObject>."
+#error "The header file 'killswitch.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 63
 #error "This file was generated using the moc from 4.8.1. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -17,7 +17,7 @@
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
-static const uint qt_meta_data_Device[] = {
+static const uint qt_meta_data_Killswitch[] = {
 
  // content:
        6,       // revision
@@ -31,60 +31,59 @@ static const uint qt_meta_data_Device[] = {
        1,       // signalCount
 
  // signals: signature, parameters, type, tag, flags
-       8,    7,    7,    7, 0x05,
+      12,   11,   11,   11, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-      33,    7,    7,    7, 0x0a,
+      40,   34,   11,   11, 0x0a,
 
        0        // eod
 };
 
-static const char qt_meta_stringdata_Device[] = {
-    "Device\0\0triggerPropertyChanged()\0"
-    "propertyChanged()\0"
+static const char qt_meta_stringdata_Killswitch[] = {
+    "Killswitch\0\0triggerStateChanged()\0"
+    "state\0stateChanged(int)\0"
 };
 
-void Device::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void Killswitch::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         Q_ASSERT(staticMetaObject.cast(_o));
-        Device *_t = static_cast<Device *>(_o);
+        Killswitch *_t = static_cast<Killswitch *>(_o);
         switch (_id) {
-        case 0: _t->triggerPropertyChanged(); break;
-        case 1: _t->propertyChanged(); break;
+        case 0: _t->triggerStateChanged(); break;
+        case 1: _t->stateChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
     }
-    Q_UNUSED(_a);
 }
 
-const QMetaObjectExtraData Device::staticMetaObjectExtraData = {
+const QMetaObjectExtraData Killswitch::staticMetaObjectExtraData = {
     0,  qt_static_metacall 
 };
 
-const QMetaObject Device::staticMetaObject = {
-    { &QObject::staticMetaObject, qt_meta_stringdata_Device,
-      qt_meta_data_Device, &staticMetaObjectExtraData }
+const QMetaObject Killswitch::staticMetaObject = {
+    { &QObject::staticMetaObject, qt_meta_stringdata_Killswitch,
+      qt_meta_data_Killswitch, &staticMetaObjectExtraData }
 };
 
 #ifdef Q_NO_DATA_RELOCATION
-const QMetaObject &Device::getStaticMetaObject() { return staticMetaObject; }
+const QMetaObject &Killswitch::getStaticMetaObject() { return staticMetaObject; }
 #endif //Q_NO_DATA_RELOCATION
 
-const QMetaObject *Device::metaObject() const
+const QMetaObject *Killswitch::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
 }
 
-void *Device::qt_metacast(const char *_clname)
+void *Killswitch::qt_metacast(const char *_clname)
 {
     if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_Device))
-        return static_cast<void*>(const_cast< Device*>(this));
+    if (!strcmp(_clname, qt_meta_stringdata_Killswitch))
+        return static_cast<void*>(const_cast< Killswitch*>(this));
     return QObject::qt_metacast(_clname);
 }
 
-int Device::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int Killswitch::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QObject::qt_metacall(_c, _id, _a);
     if (_id < 0)
@@ -98,7 +97,7 @@ int Device::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void Device::triggerPropertyChanged()
+void Killswitch::triggerStateChanged()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, 0);
 }
