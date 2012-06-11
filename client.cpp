@@ -11,18 +11,27 @@
 void Client::gotDeviceAdded(QString device)
 {
     qDebug() << "device " << device << " added!";
+    if (!m_devicesList.isEmpty())
+        m_devicesList.clear();
+
     refreshDevicesData();
 }
 
 void Client::gotDeviceChanged(QString device)
 {
     qDebug() << "device " << device << " changed!";
+    if (!m_devicesList.isEmpty())
+        m_devicesList.clear();
+
     refreshDevicesData();
 }
 
 void Client::gotDeviceRemoved(QString device)
 {
     qDebug() << "device " << device << " removed!";
+    if (!m_devicesList.isEmpty())
+        m_devicesList.clear();
+
     refreshDevicesData();
 }
 

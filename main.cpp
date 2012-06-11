@@ -25,6 +25,7 @@ int main(int argc, char *argv[])
         client->setBlockIdx(1,false);
 
     QList<QDBusObjectPath> devices = client->enumerateDevices();
+    qDebug() << "Found " << devices.count() << " devices!!";
     foreach(QDBusObjectPath udi, devices) {
         Device *device = new Device(udi.path());
         QObject::connect(device, SIGNAL(triggerPropertyChanged()), test, SLOT(gotDeviceChanged()));

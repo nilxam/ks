@@ -38,8 +38,8 @@ static const uint qt_meta_data_Client[] = {
 
  // slots: signature, parameters, type, tag, flags
      105,    8,    7,    7, 0x08,
-     129,    8,    7,    7, 0x08,
-     155,    8,    7,    7, 0x08,
+     141,    8,    7,    7, 0x08,
+     167,    8,    7,    7, 0x08,
 
        0        // eod
 };
@@ -47,7 +47,8 @@ static const uint qt_meta_data_Client[] = {
 static const char qt_meta_stringdata_Client[] = {
     "Client\0\0device\0deviceAdded(QString)\0"
     "deviceChanged(QString)\0deviceRemoved(QString)\0"
-    "key\0urfkeyPressed(int)\0gotDeviceAdded(QString)\0"
+    "key\0urfkeyPressed(int)\0"
+    "on_clientIface_DeviceAdded(QString)\0"
     "gotDeviceChanged(QString)\0"
     "gotDeviceRemoved(QString)\0"
 };
@@ -62,7 +63,7 @@ void Client::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 1: _t->deviceChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 2: _t->deviceRemoved((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 3: _t->urfkeyPressed((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 4: _t->gotDeviceAdded((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 4: _t->on_clientIface_DeviceAdded((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 5: _t->gotDeviceChanged((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 6: _t->gotDeviceRemoved((*reinterpret_cast< QString(*)>(_a[1]))); break;
         default: ;
