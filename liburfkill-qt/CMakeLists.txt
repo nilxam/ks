@@ -36,12 +36,27 @@ set(liburfkill_qt_MOCS
     killswitch.h
 )
 
+set(GENERIC_LIB_VERSION "0.5.0")
+set(GENERIC_LIB_SOVERSION "0")
+set(VERSION ${GENERIC_LIB_VERSION})
+
 QT4_WRAP_CPP(MOCS ${liburfkill_qt_MOCS})
 
 add_library(urfkill-qt SHARED ${liburfkill_qt_SRCS} ${MOCS})
 
 target_link_libraries(urfkill-qt ${QT_QTCORE_LIBRARY} ${QT_QTDBUS_LIBRARY})
 
+set_target_properties(urfkill-qt PROPERTIES
+    VERSION ${GENERIC_LIB_VERSION}
+    SOVERSION ${GENERIC_LIB_SOVERSION}
+)
+
 install(TARGETS urfkill-qt DESTINATION ${LIB_INSTALL_DIR})
 
 install(FILES ${liburfkill_qt_HDRS} DESTINATION include/liburfkill-qt)
+
+# install pkgconfig file
+if(NOT WIN32)
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/urfkill-qt.pc.in ${CMAKE_CURRENT_BINARY_DIR}/urfkill-qt.pc @ONLY)
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/urfkill-qt.pc DESTINATION ${LIB_INSTALL_DIR}/pkgconfig)
+endif(NOT WIN32)
