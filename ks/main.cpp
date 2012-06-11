@@ -4,10 +4,11 @@
 #include <QList>
 #include <QDBusObjectPath>
 
-#include "device.h"
-#include "killswitch.h"
+#include <liburfkill-qt/device.h>
+#include <liburfkill-qt/killswitch.h>
+#include <liburfkill-qt/client.h>
+
 #include "test.h"
-#include "client.h"
 
 int main(int argc, char *argv[])
 {
