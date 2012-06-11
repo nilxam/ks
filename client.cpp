@@ -12,21 +12,18 @@ void Client::gotDeviceAdded(QString device)
 {
     qDebug() << "device " << device << " added!";
     refreshDevicesData();
-    qDebug() << "device count is " << this->deviceCount();
 }
 
 void Client::gotDeviceChanged(QString device)
 {
     qDebug() << "device " << device << " changed!";
     refreshDevicesData();
-    qDebug() << "device count is " << this->deviceCount();
 }
 
 void Client::gotDeviceRemoved(QString device)
 {
     qDebug() << "device " << device << " removed!";
     refreshDevicesData();
-    qDebug() << "device count is " << this->deviceCount();
 }
 
 bool Client::setBlock(uint type, bool block)
@@ -55,22 +52,17 @@ bool Client::setBlockIdx(uint index, bool block)
 
 void Client::refreshDevicesData()
 {
-    m_deviceCount = 0;
-
     QDBusReply<QList<QDBusObjectPath> > reply = clientIface->call("EnumerateDevices");
 
     if (reply.isValid()) {
         m_devicesList = reply.value();
-        foreach(QDBusObjectPath udi, m_devicesList) {
-            m_deviceCount++;
-        }
     } else {
         qDebug() << QString("D-Bus error: Call EnumerateDevices() failed!");
     }
 }
 
 Client::Client() 
-    :m_deviceCount(0)
+    : m_keyControl(false), m_daemonVersion(""), m_devicesList()
 {
     QDBusConnection conn = QDBusConnection::systemBus();
     if (!QDBusConnection::systemBus().isConnected()) {
@@ -119,9 +111,4 @@ bool Client::keyControl() const
 QString Client::daemonVersion() const
 {
     return m_daemonVersion;
-}
-
-uint Client::deviceCount() const
-{
-    return m_deviceCount;
 }

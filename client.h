@@ -18,7 +18,6 @@ public:
     QList<QDBusObjectPath> enumerateDevices() const;
     bool keyControl() const;
     QString daemonVersion() const;
-    uint deviceCount() const;
 Q_SIGNALS:
     void deviceAdded(QString device);
     void deviceChanged(QString device);
@@ -32,7 +31,6 @@ private:
     bool m_keyControl;
     QString m_daemonVersion;
     QList<QDBusObjectPath> m_devicesList;
-    uint m_deviceCount;
 private slots:
     void gotDeviceAdded(QString device);
     void gotDeviceChanged(QString device);
