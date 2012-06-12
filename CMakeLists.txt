@@ -1,39 +1,22 @@
 project(ks)
 cmake_minimum_required(VERSION 2.6)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH})
-
 if (NOT CMAKE_CONFIGURATION_TYPES AND NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE RelWithDebInfo)
 endif (NOT CMAKE_CONFIGURATION_TYPES AND NOT CMAKE_BUILD_TYPE)
 
-find_package(Qt4 REQUIRED)
-include(${QT_USE_FILE})
+find_package(KDE4 REQUIRED)
+include(KDE4Defaults)
 
 add_definitions(${QT_DEFINITIONS})
 
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
+find_package(LibUrfkillQt REQUIRED)
+
 include_directories(
-    ${CMAKE_SOURCE_DIR} 
-    ${CMAKE_CURRENT_BINARY_DIR} 
-    ${CMAKE_CURRENT_SOURCE_DIR} 
-    ${QT_QTCORE_INCLUDE_DIR} 
-    ${QT_QTGUI_INCLUDE_DIR}
+    ${KDE4_INCLUDES} 
+    ${LibUrfkillQt_INCLUDE_DIR}
 )
 
-set(LIB_SUFFIX "" CACHE STRING "Define suffix for lib directory (32/64)")
-
-set(BIN_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/bin)
-set(LIB_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/lib${LIB_SUFFIX})
-
 # subdirs
-add_subdirectory(liburfkill-qt)
-add_subdirectory(ks)
-
-# add uninstall target
-CONFIGURE_FILE(
-    "${CMAKE_SOURCE_DIR}/cmake/cmake_uninstall.cmake.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/cmake/cmake_uninstall.cmake"
-    IMMEDIATE @ONLY)
-
-ADD_CUSTOM_TARGET(uninstall
-    "${CMAKE_COMMAND}" -P "${CMAKE_CURRENT_BINARY_DIR}/cmake/cmake_uninstall.cmake")
+add_subdirectory(src)

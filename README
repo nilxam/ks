@@ -1,1 +1,1 @@
-URfkill Qt binding. liburfkill-qt provides Qt API for control URfkill.
+ks is a small frontend tool of URfkill, it introduced liburfkill-qt to handle rfkill event.
