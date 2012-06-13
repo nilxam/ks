@@ -12,7 +12,7 @@ ENDIF (LibUrfkillQt_LIBRARIES AND LibUrfkillQt_INCLUDE_DIR)
 
 MESSAGE(STATUS "Looking for liburfkill-qt")
 find_path(LibUrfkillQt_INCLUDE_DIR liburfkill-qt/urfkill.h)
-find_library(LibUrfkillQt_LIBRARIES liburfkill-qt)
+find_library(LibUrfkillQt_LIBRARIES urfkill-qt)
 
 MARK_AS_ADVANCED(LibUrfkillQt_INCLUDE_DIR)
 MARK_AS_ADVANCED(LibUrfkillQt_LIBRARIES)
